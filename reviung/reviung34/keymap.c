@@ -55,7 +55,7 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(esc_combo, KC_ESC),
     COMBO(ctrl_combo, OSM(MOD_LCTL)),
     COMBO(ent_combo, KC_ENT),
-    COMBO(quot_combo, CAPS_WORD)
+    COMBO(quot_combo, CW_TOGG)
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
