@@ -2,7 +2,7 @@ version: '3'
 
 vars:
   USERNAME: hannes
-  KEYBOARD: reviung/reviung41
+  KEYBOARD: reviung/reviung34
 
 tasks:
 
@@ -39,9 +39,9 @@ tasks:
   compile:
     dir: "qmk_firmware"
     cmds:
-    # - qmk compile -km {{.USERNAME}} -kb {{.KEYBOARD}}
+    - qmk compile -j 4 -km {{.USERNAME}} -kb {{.KEYBOARD}}
     # - qmk doctor
-    - qmk compile -km via -kb {{.KEYBOARD}} -j 4 -e CONVERT_TO=kb2040
+    # - qmk compile -km via -kb {{.KEYBOARD}} -j 4 -e CONVERT_TO=kb2040
     env:
       QMK_HOME:
         sh: pwd
