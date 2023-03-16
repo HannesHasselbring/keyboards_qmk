@@ -1,0 +1,45 @@
+version: '3'
+
+vars:
+  USERNAME: '{{.USERNAME | default "hannes"}}'
+  KEYBOARD: '{{.KEYBOARD | default "reviung/reviung34"}}'
+  CONVERT_TO: '{{.CONVERT_TO | default ""}}'
+
+
+tasks:
+  setup-symlinks:
+    deps:
+    - init-git-sub
+    cmds:
+    - ln -s {{.CURRENT_WORK_DIR}}/{{.KEYBOARD}} qmk_firmware/keyboards/{{.KEYBOARD}}/keymaps/{{.USERNAME}}
+    vars:
+      CURRENT_WORK_DIR:
+        sh: pwd
+    status:
+    - test -L qmk_firmware/keyboards/{{.KEYBOARD}}/keymaps/{{.USERNAME}}
+
+  lint:
+    dir: "qmk_firmware"
+    cmds:
+    - qmk lint -km {{.USERNAME}} -kb {{.KEYBOARD}} --strict
+    deps:
+    - setup-symlinks
+
+  compile:
+    dir: "qmk_firmware"
+    cmds:
+    - qmk compile -j 4 -km {{.USERNAME}} -kb {{.KEYBOARD}} {{.CONVERT_TO}}
+    # - qmk doctor
+    # - qmk compile -km via -kb {{.KEYBOARD}} -j 4 -e CONVERT_TO=kb2040
+    env:
+      QMK_HOME:
+        sh: pwd
+
+  clean:
+    dir: "qmk_firmware"
+    cmds:
+    - qmk clean
+
+  draw-keymap:
+    cmds:
+    - keymap draw

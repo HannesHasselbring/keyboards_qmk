@@ -1,11 +1,19 @@
 version: '3'
 
-vars:
-  USERNAME: hannes
-  KEYBOARD: reviung/reviung34
+includes:
+  reviung34:
+    taskfile: ./Taskfile-keyboard.yml
+    vars:
+      USERNAME: hannes
+      KEYBOARD: reviung/reviung34
+  reviung41:
+    taskfile: ./Taskfile-keyboard.yml
+    vars:
+      USERNAME: hannes
+      KEYBOARD: reviung/reviung41
+      CONVERT_TO: '-e CONVERT_TO=kb2040'
 
 tasks:
-
   setup:
     cmds:
     - git submodule update --init --recursive
@@ -17,38 +25,6 @@ tasks:
     - git submodule add https://github.com/qmk/qmk_firmware.git
     status:
       - test -d "qmk_firmware"
-
-  setup-symlinks:
-    deps:
-    - init-git-sub
-    cmds:
-    - ln -s {{.CURRENT_WORK_DIR}}/{{.KEYBOARD}} qmk_firmware/keyboards/{{.KEYBOARD}}/keymaps/{{.USERNAME}}
-    vars:
-      CURRENT_WORK_DIR:
-        sh: pwd
-    status:
-    - test -L qmk_firmware/keyboards/{{.KEYBOARD}}/keymaps/{{.USERNAME}}
-
-  qmk-lint:
-    dir: "qmk_firmware"
-    cmds:
-    - qmk lint -km {{.USERNAME}} -kb {{.KEYBOARD}} --strict
-    deps:
-    - setup-symlinks
-
-  compile:
-    dir: "qmk_firmware"
-    cmds:
-    - qmk compile -j 4 -km {{.USERNAME}} -kb {{.KEYBOARD}}
-    # - qmk doctor
-    # - qmk compile -km via -kb {{.KEYBOARD}} -j 4 -e CONVERT_TO=kb2040
-    env:
-      QMK_HOME:
-        sh: pwd
-
-  draw-keymap:
-    cmds:
-    - keymap draw
 
   install-draw:
     cmds:

@@ -53,12 +53,12 @@ const uint16_t PROGMEM ctrl_combo[] = {KC_X, KC_C, COMBO_END};
 const uint16_t PROGMEM ent_combo[] = {KC_COMM, KC_DOT, COMBO_END};
 const uint16_t PROGMEM quot_combo[] = {KC_U, KC_Y, COMBO_END};
 
-// combo_t key_combos[COMBO_COUNT] = {
-//     COMBO(esc_combo, KC_ESC),
-//     COMBO(ctrl_combo, OSM(MOD_LCTL)),
-//     COMBO(ent_combo, KC_ENT),
-//     COMBO(quot_combo, CAPS_WORD)
-// };
+combo_t key_combos[COMBO_COUNT] = {
+    COMBO(esc_combo, KC_ESC),
+    COMBO(ctrl_combo, OSM(MOD_LCTL)),
+    COMBO(ent_combo, KC_ENT),
+    COMBO(quot_combo, CW_TOGG)
+};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT_reviung41(
