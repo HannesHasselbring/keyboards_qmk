@@ -4,21 +4,31 @@ vars:
   USERNAME: '{{.USERNAME | default "hannes"}}'
   KEYBOARD: '{{.KEYBOARD | default "reviung/reviung34"}}'
   CONVERT_TO: '{{.CONVERT_TO | default ""}}'
-
+  CURRENT_WORK_DIR:
+        sh: pwd
 
 tasks:
-  setup-symlinks:
-    deps:
-    - init-git-sub
+
+  setup-symlink-handwired:
+    desc: create needed symlink for handwired keyboard
+    cmds:
+    - ln -s {{.CURRENT_WORK_DIR}}/{{.KEYBOARD}} 34keys -t qmk_firmware/keyboards/handwired
+    preconditions:
+    - test -d qmk_firmware
+    status:
+    - test -L qmk_firmware/keyboards/{{.KEYBOARD}}
+
+  setup-symlink:
+    desc: create needed symlink
     cmds:
     - ln -s {{.CURRENT_WORK_DIR}}/{{.KEYBOARD}} qmk_firmware/keyboards/{{.KEYBOARD}}/keymaps/{{.USERNAME}}
-    vars:
-      CURRENT_WORK_DIR:
-        sh: pwd
+    preconditions:
+    - test -d qmk_firmware
     status:
     - test -L qmk_firmware/keyboards/{{.KEYBOARD}}/keymaps/{{.USERNAME}}
 
   lint:
+    dsec: call qmk lint for keyboard
     dir: "qmk_firmware"
     cmds:
     - qmk lint -km {{.USERNAME}} -kb {{.KEYBOARD}} --strict
@@ -26,11 +36,14 @@ tasks:
     - setup-symlinks
 
   compile:
+    desc: compile keyboard firmware
     dir: "qmk_firmware"
     cmds:
     - qmk compile -j 4 -km {{.USERNAME}} -kb {{.KEYBOARD}} {{.CONVERT_TO}}
     # - qmk doctor
     # - qmk compile -km via -kb {{.KEYBOARD}} -j 4 -e CONVERT_TO=kb2040
+    sources:
+    - "{{.CURRENT_WORK_DIR}}/{{.KEYBOARD}}/*"
     env:
       QMK_HOME:
         sh: pwd
@@ -40,6 +53,21 @@ tasks:
     cmds:
     - qmk clean
 
-  draw-keymap:
+  gen-keymap:
+    dir: "qmk_firmware"
     cmds:
-    - keymap draw
+    - qmk c2json -km {{.USERNAME}} -kb {{.KEYBOARD}} "keyboards/{{.KEYBOARD}}/keymaps/{{.USERNAME}}/keymap.c"  -o /tmp/draw.json
+    - keymap parse --qmk-keymap-json /tmp/draw.json > "keyboards/{{.KEYBOARD}}/keymaps/{{.USERNAME}}/keymap-drawer.yaml"
+    generates:
+    - "keyboards/{{.KEYBOARD}}/keymaps/{{.USERNAME}}/keymap-drawer.yaml"
+    sources:
+    - "{{.CURRENT_WORK_DIR}}/{{.KEYBOARD}}/keymap.c"
+
+  draw:
+    deps: [gen-keymap, compile]
+    cmds:
+    - keymap draw ".{{.CURRENT_WORK_DIR}}/{{.KEYBOARD}}/keymap-drawer.yaml" > ".{{.CURRENT_WORK_DIR}}/{{.KEYBOARD}}/keymap.svg"
+    sources:
+    - ".{{.CURRENT_WORK_DIR}}/{{.KEYBOARD}}/keymap-drawer.yaml"
+    generates:
+    - ".{{.CURRENT_WORK_DIR}}/{{.KEYBOARD}}/keymap.svg"

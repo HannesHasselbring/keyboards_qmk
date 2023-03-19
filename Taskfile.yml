@@ -6,12 +6,22 @@ includes:
     vars:
       USERNAME: hannes
       KEYBOARD: reviung/reviung34
-  reviung41:
+  reviung41-kb2040:
     taskfile: ./Taskfile-keyboard.yml
     vars:
       USERNAME: hannes
       KEYBOARD: reviung/reviung41
       CONVERT_TO: '-e CONVERT_TO=kb2040'
+  reviung41:
+    taskfile: ./Taskfile-keyboard.yml
+    vars:
+      USERNAME: hannes
+      KEYBOARD: reviung/reviung41
+  34keys:
+    taskfile: ./Taskfile-keyboard.yml
+    vars:
+      USERNAME: default
+      KEYBOARD: handwired/34keys
 
 tasks:
   setup:
