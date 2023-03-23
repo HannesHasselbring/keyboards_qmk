@@ -1,0 +1,142 @@
+layout: {qmk_keyboard: reviung/reviung34, qmk_layout: LAYOUT_reviung34}
+layers:
+  L0:
+  - Q
+  - W
+  - F
+  - P
+  - G
+  - J
+  - L
+  - U
+  - Y
+  - BSPC
+  - A
+  - R
+  - S
+  - T
+  - D
+  - H
+  - N
+  - E
+  - I
+  - O
+  - {t: Z, h: LSFT}
+  - X
+  - C
+  - V
+  - B
+  - K
+  - M
+  - ','
+  - .
+  - {t: /, h: RSFT}
+  - {t: '''', h: LGUI}
+  - {t: ENTER, h: LMO(_LOWER)}
+  - {t: SPC, h: LMO(_RAISE)}
+  - {t: TAB, h: LALT}
+  L1:
+  - '!'
+  - '@'
+  - '#'
+  - $
+  - '%'
+  - ^
+  - '&'
+  - '*'
+  - (
+  - )
+  - _
+  - +
+  - '{'
+  - '}'
+  - '|'
+  - LEFT
+  - DOWN
+  - UP
+  - RGHT
+  - ;
+  - {t: ESC, h: LSFT}
+  - LCTL
+  - LALT
+  - LGUI
+  - ''''
+  - HOME
+  - END
+  - PGUP
+  - PGDN
+  - BSPC
+  - ''
+  - ''
+  - ''
+  - {t: LCTL, h: sticky}
+  L2:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  - '7'
+  - '8'
+  - '9'
+  - '0'
+  - '-'
+  - '='
+  - '['
+  - ']'
+  - \
+  - LGUI(GRV)
+  - ''
+  - '`'
+  - '~'
+  - ':'
+  - {t: ESC, h: LSFT}
+  - RCTL
+  - RALT
+  - RGUI
+  - '"'
+  - TAB
+  - ''
+  - RCTL
+  - RALT
+  - ENTER
+  - {t: LCTL, h: sticky}
+  - ''
+  - ''
+  - ''
+  L3:
+  - F1
+  - F2
+  - F3
+  - F4
+  - F5
+  - RGB VAI
+  - RGB SAI
+  - RGB HUI
+  - RGB MOD
+  - RGB TOG
+  - F6
+  - F7
+  - F8
+  - F9
+  - F10
+  - RGB VAD
+  - RGB SAD
+  - RGB HUD
+  - RGB RMOD
+  - ''
+  - {t: F11, h: LSFT}
+  - F12
+  - ''
+  - ''
+  - LSFT(LCTL(LGUI(4)))
+  - LGUI(TAB)
+  - LGUI(GRV)
+  - ''
+  - ''
+  - MAGIC TOGGLE CTL GUI
+  - ''
+  - ''
+  - ''
+  - ''

@@ -6,26 +6,24 @@ vars:
   CONVERT_TO: '{{.CONVERT_TO | default ""}}'
   CURRENT_WORK_DIR:
         sh: pwd
+ 
 
 tasks:
 
-  setup-symlink-handwired:
-    desc: create needed symlink for handwired keyboard
-    cmds:
-    - ln -s {{.CURRENT_WORK_DIR}}/{{.KEYBOARD}} 34keys -t qmk_firmware/keyboards/handwired
-    preconditions:
-    - test -d qmk_firmware
-    status:
-    - test -L qmk_firmware/keyboards/{{.KEYBOARD}}
-
   setup-symlink:
-    desc: create needed symlink
     cmds:
-    - ln -s {{.CURRENT_WORK_DIR}}/{{.KEYBOARD}} qmk_firmware/keyboards/{{.KEYBOARD}}/keymaps/{{.USERNAME}}
+    - ln -s {{.CURRENT_WORK_DIR}}/{{.KEYBOARD}} '{{.QMK_KEYMAP_PATH | trim}}'
     preconditions:
     - test -d qmk_firmware
     status:
-    - test -L qmk_firmware/keyboards/{{.KEYBOARD}}/keymaps/{{.USERNAME}}
+    - test -L '{{.QMK_KEYMAP_PATH | trim}}'
+    vars:
+       QMK_KEYMAP_PATH: >-
+        {{if hasPrefix "handwired" .KEYBOARD }}
+        qmk_firmware/keyboards/{{.KEYBOARD}}
+        {{else}}
+        qmk_firmware/keyboards/{{.KEYBOARD}}/keymaps/{{.USERNAME}}
+        {{end}}
 
   lint:
     dsec: call qmk lint for keyboard
@@ -38,6 +36,7 @@ tasks:
   compile:
     desc: compile keyboard firmware
     dir: "qmk_firmware"
+    deps: [setup-symlink]
     cmds:
     - qmk compile -j 4 -km {{.USERNAME}} -kb {{.KEYBOARD}} {{.CONVERT_TO}}
     # - qmk doctor

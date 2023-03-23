@@ -22,6 +22,21 @@ includes:
     vars:
       USERNAME: default
       KEYBOARD: handwired/34keys
+  banana:
+    taskfile: ./Taskfile-keyboard.yml
+    vars:
+      USERNAME: hannes
+      KEYBOARD: handwired/banana
+  void-ergo:
+    taskfile: ./Taskfile-keyboard.yml
+    vars:
+      USERNAME: hannes
+      KEYBOARD: handwired/void_ergo
+  void9:
+    taskfile: ./Taskfile-keyboard.yml
+    vars:
+      USERNAME: eruvanos
+      KEYBOARD: handwired/void9
 
 tasks:
   setup:
@@ -39,3 +54,13 @@ tasks:
   install-draw:
     cmds:
       - pipx install keymap-drawer
+
+  default:
+    cmds:
+    - task: reviung34:compile
+    - task: reviung41-kb2040:compile
+    - task: reviung41:compile
+    - task: 34keys:compile
+    # - task: banana:compile
+    # - task: void9:compile
+    # - task: void-ergo:compile
