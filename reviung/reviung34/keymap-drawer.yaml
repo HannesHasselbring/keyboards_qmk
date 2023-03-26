@@ -32,8 +32,8 @@ layers:
   - .
   - {t: /, h: RSFT}
   - {t: '''', h: LGUI}
-  - {t: ENTER, h: LMO(_LOWER)}
-  - {t: SPC, h: LMO(_RAISE)}
+  - LT(MO( LOWER), ENTER)
+  - LT(MO( RAISE), SPC)
   - {t: TAB, h: LALT}
   L1:
   - '!'

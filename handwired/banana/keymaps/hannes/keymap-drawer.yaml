@@ -1,0 +1,22 @@
+layout: {qmk_keyboard: handwired/banana, qmk_layout: LAYOUT}
+layers:
+  L0:
+  - {t: F1, h: L1}
+  - F2
+  - F3
+  - F4
+  - F5
+  - F6
+  - F7
+  - KB MUTE
+  L1:
+  - {type: held}
+  - RALT(RCMD(LEFT))
+  - RALT(RCMD(V))
+  - RALT(RCMD(M))
+  - RALT(RCMD(N))
+  - LGUI(F12)
+  - ''
+  - QK REBOOT
+  L2: ['', '', '', '', '', '', '', '']
+  L3: ['', '', '', '', '', '', '', '']

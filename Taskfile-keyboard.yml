@@ -5,7 +5,7 @@ vars:
   KEYBOARD: '{{.KEYBOARD | default "reviung/reviung34"}}'
   CONVERT_TO: '{{.CONVERT_TO | default ""}}'
   CURRENT_WORK_DIR:
-        sh: pwd
+    sh: pwd
  
 
 tasks:
@@ -63,10 +63,16 @@ tasks:
     - "{{.CURRENT_WORK_DIR}}/{{.KEYBOARD}}/keymap.c"
 
   draw:
+    dir: qmk_firmware
     deps: [gen-keymap, compile]
     cmds:
-    - keymap draw ".{{.CURRENT_WORK_DIR}}/{{.KEYBOARD}}/keymap-drawer.yaml" > ".{{.CURRENT_WORK_DIR}}/{{.KEYBOARD}}/keymap.svg"
+    - keymap draw "keyboards/{{.KEYBOARD}}/keymaps/{{.USERNAME}}/keymap-drawer.yaml" {{.ADDITIONAL_PARAMETER | trim}} > "keyboards/{{.KEYBOARD}}/keymaps/{{.USERNAME}}/keymap.svg"
+    vars:
+      ADDITIONAL_PARAMETER: >-
+        {{if hasPrefix "handwired" .KEYBOARD }}
+        -j keyboards/{{.KEYBOARD}}/info.json
+        {{end}}
     sources:
-    - ".{{.CURRENT_WORK_DIR}}/{{.KEYBOARD}}/keymap-drawer.yaml"
+    - "keyboards/{{.KEYBOARD}}/keymaps/{{.USERNAME}}/keymap-drawer.yaml"
     generates:
-    - ".{{.CURRENT_WORK_DIR}}/{{.KEYBOARD}}/keymap.svg"
+    - "keyboards/{{.KEYBOARD}}/keymaps/{{.USERNAME}}/keymap.svg"

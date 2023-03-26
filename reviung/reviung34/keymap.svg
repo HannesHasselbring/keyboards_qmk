@@ -139,11 +139,11 @@ path {
 <text x="170.0" y="252.0" class="tap">&#x27;</text>
 <text x="170.0" y="276.0" class="hold">LGUI</text>
 <rect rx="6.0" ry="6.0" x="200.0" y="226.0" width="52.0" height="52.0" class=""/>
-<text x="226.0" y="252.0" class="tap">ENTER</text>
-<text x="226.0" y="276.0" class="hold">LMO(_LOWER)</text>
+<text x="226.0" y="252.0" class="tap">
+<tspan x="226.0" dy="-1.2em">LT(MO(</tspan><tspan x="226.0" dy="1.2em">LOWER),</tspan><tspan x="226.0" dy="1.2em">ENTER)</tspan></text>
 <rect rx="6.0" ry="6.0" x="256.0" y="226.0" width="52.0" height="52.0" class=""/>
-<text x="282.0" y="252.0" class="tap">SPC</text>
-<text x="282.0" y="276.0" class="hold">LMO(_RAISE)</text>
+<text x="282.0" y="252.0" class="tap">
+<tspan x="282.0" dy="-1.2em">LT(MO(</tspan><tspan x="282.0" dy="1.2em">RAISE),</tspan><tspan x="282.0" dy="1.2em">SPC)</tspan></text>
 <rect rx="6.0" ry="6.0" x="368.0" y="226.0" width="108.0" height="52.0" class=""/>
 <text x="422.0" y="252.0" class="tap">TAB</text>
 <text x="422.0" y="276.0" class="hold">LALT</text>
