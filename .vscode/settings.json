@@ -1,0 +1,12 @@
+{
+  "json.schemas": [
+    {
+      "fileMatch": ["/*info.json"],
+      "url": "./qmk_firmware/data/schemas/keyboard.jsonschema"
+    },
+    {
+      "fileMatch": ["keymaps/*.json"],
+      "url": "./qmk_firmware/data/schemas/keymap.jsonschema"
+    }
+  ]
+}

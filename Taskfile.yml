@@ -51,6 +51,14 @@ tasks:
     status:
       - test -d "qmk_firmware"
 
+  init-user-dir:
+    cmds:
+    - ln -s {{.CURRENT_WORK_DIR}}/users/hannes qmk_firmware/users/hannes
+    preconditions:
+    - test -d qmk_firmware
+    status:
+    - test -L qmk_firmware/users/hannes
+
   install-draw:
     cmds:
       - pipx install keymap-drawer

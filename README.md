@@ -4,6 +4,7 @@ build process highly inspired by a bogpost about [separate keymap repo for qmk](
 It uses [task](https://taskfile.dev) instead of make to automate the compile process.
 
 ## Todo:
-- use user config for common keymap
-- draw keyboard layout with [keymap-drawer](https://github.com/caksoylar/keymap-drawer)
-- fix build for older (handwired) keyboards
+
+- [ ] use user config for common keymap
+- [x] draw keyboard layout with [keymap-drawer](https://github.com/caksoylar/keymap-drawer)
+- [ ] fix build for older (handwired) keyboards

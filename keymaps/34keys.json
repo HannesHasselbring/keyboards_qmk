@@ -1,0 +1,6 @@
+{
+  "keyboard": "34keys",
+  "keymap": "hannes",
+  "layout": "LAYOUT_34key_w",
+  "layers": [["HRM(_BASE)"], ["_LOWER"], ["_RAISE"], ["_ADJUST"]]
+}

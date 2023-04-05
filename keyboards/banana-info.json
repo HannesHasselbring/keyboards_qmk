@@ -1,0 +1,44 @@
+{
+  "keyboard_name": "banana_macropad",
+  "url": "https://github.com/dbostian/banana",
+  "maintainer": "qmk",
+  "manufacturer": "3D print",
+  "usb": {
+    "vid": "0xFEED",
+    "pid": "0x0815",
+    "device_version": "0.0.1"
+  },
+  "processor": "atmega32u4",
+  "bootloader": "caterina",
+  "matrix_pins": {
+    "cols": ["D1", "D0", "D4", "C6", "D7", "E6", "B4", "B5"],
+    "rows": ["B2"]
+  },
+  "diode_direction": "COL2ROW",
+  "width": 8,
+  "height": 1,
+  "encoder": {
+    "rotary": [ {"pin_a": "F6", "pin_b": "F6"}]
+    
+  },
+  "features": {
+      "extrakey": true,
+      "encoder": true,
+      "via": true,
+      "encoder_map": true
+  },
+  "layouts": {
+    "LAYOUT": {
+      "layout": [
+        { "label": "F1", "x": 0, "y": 0, "matrix": [0, 0] },
+        { "label": "F2", "x": 1, "y": 0, "matrix": [0, 1] },
+        { "label": "F3", "x": 2, "y": 0, "matrix": [0, 2] },
+        { "label": "F4", "x": 3, "y": 0, "matrix": [0, 3] },
+        { "label": "F5", "x": 4, "y": 0, "matrix": [0, 4] },
+        { "label": "F6", "x": 5, "y": 0, "matrix": [0, 5] },
+        { "label": "F7", "x": 6, "y": 0, "matrix": [0, 6] },
+        { "label": "F8", "x": 7, "y": 0, "matrix": [0, 7] }
+      ]
+    }
+  }
+}

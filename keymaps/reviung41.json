@@ -1,0 +1,11 @@
+{
+  "keyboard": "reviung/reviung41",
+  "keymap": "hannes",
+  "layout": "LAYOUT_r41_w",
+  "layers": [
+    ["C_41(HRM(_BASE))"],
+    ["C_41(_LOWER)"],
+    ["C_41(_RAISE)"],
+    ["C_41(_ADJUST)"]
+  ]
+}
